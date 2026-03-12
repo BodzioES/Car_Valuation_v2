@@ -62,10 +62,27 @@ def process_announcement(url_announcement):
         power_raw = extract_data(parameters.get('engine_power')).replace(' ', '').replace('KM','')
         power = int(power_raw) if power_raw.isdigit() else 0
 
-        accident_raw = extract_data(parameters.get('accident_free'))
-        accident_free = True if accident_raw in ['Yes','1','Yes'] else False
+        is_damaged = extract_data(parameters.get('damaged')).strip().capitalize()
+        no_accident = extract_data(parameters.get('no_accident')).strip().capitalize()
 
-        equipment = json.dumps(car_data.get('equipment', []))
+        if no_accident == 'Tak':
+            accident_free = True
+        elif is_damaged == 'Tak':
+            accident_free = False
+        else:
+            accident_free = True if is_damaged == 'Nie' else False
+
+        equipment_raw = car_data.get('equipment', [])
+        labels_lists = []
+
+        for category in  equipment_raw:
+            category_values = category.get('values',[])
+            for item in category_values:
+                label = item.get('label', '')
+                if label:
+                    labels_lists.append(label)
+
+        equipment = json.dumps(labels_lists,ensure_ascii=False)
 
         price_data = car_data.get('price', {})
         price = 0
@@ -92,8 +109,10 @@ def process_announcement(url_announcement):
                     capacity_cm3, fuel, transmission, body_type, accident_free, price, equipment)
                     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ON CONFLICT (id_announcement) DO \
                     UPDATE SET
-                        price = EXCLUDED.price, \
-                        course = EXCLUDED.course; \
+                        price = EXCLUDED.price,
+                        course = EXCLUDED.course,
+                        accident_free = EXCLUDED.accident_free,
+                        equipment = EXCLUDED.equipment;
                     """
 
         data_to_save = (id_announcement, mark, model, year_production, course, power,
@@ -110,6 +129,3 @@ def process_announcement(url_announcement):
     except Exception as e:
         print(f"Error: {e}")
 
-
-test_adress = "https://www.otomoto.pl/osobowe/oferta/jaguar-xk8-ID6Huj8O.html"
-process_announcement(test_adress)
