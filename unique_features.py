@@ -1,8 +1,7 @@
-import os.path
-
 import psycopg2
 import json
 from collections import Counter
+
 
 def analyze_equipment():
     conn = psycopg2.connect(
@@ -32,6 +31,7 @@ def analyze_equipment():
 
     cur.close()
     conn.close()
+
 
 if __name__ == '__main__':
     analyze_equipment()
