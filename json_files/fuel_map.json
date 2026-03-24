@@ -1,0 +1,10 @@
+{
+    "Elektryczny": 0,
+    "Benzyna": 1,
+    "Hybryda Plug-in": 2,
+    "Hybryda": 3,
+    "Diesel": 4,
+    "Benzyna+LPG": 5,
+    "Benzyna+CNG": 6,
+    "Wodór": 7
+}

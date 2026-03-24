@@ -5,8 +5,8 @@ from bs4 import BeautifulSoup
 import time
 from data_download import process_announcement
 
-STATE_FILE = "scraper_state.json"
-MAKES_FILE = "makes_dictionary.json"
+STATE_FILE = "../json_files/scraper_state.json"
+MAKES_FILE = "../json_files/makes_dictionary.json"
 
 def get_links_from_page(session, url):
     try:

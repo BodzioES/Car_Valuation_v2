@@ -15,8 +15,8 @@ conn = psycopg2.connect(
 )
 cursor = conn.cursor()
 
-if os.path.exists('features_map.json'):
-    with open('features_map.json','r') as f:
+if os.path.exists('../json_files/features_map.json'):
+    with open('../json_files/features_map.json', 'r') as f:
         features_map = json.load(f)
 
 def get_item():
@@ -77,6 +77,55 @@ def get_year():
 
     joblib.dump(scaler, 'yearProduction_scaler.pkl')
     df_raw[['id_announcement','year_production']].to_parquet('yearProduction_scaler.parquet')
+
+def get_power():
+    query = "SELECT id_announcement, power_hp FROM announcements"
+    df_raw = pd.read_sql(query, conn)
+
+    scaler = MinMaxScaler()
+    df_raw['power_hp'] = scaler.fit_transform(df_raw[['power_hp']])
+
+    joblib.dump(scaler, 'power_hp_scaler.pkl')
+    df_raw[['id_announcement','power_hp']].to_parquet('power_hp_scaler.parquet')
+
+def get_capacity():
+    query = "SELECT id_announcement, capacity_cm3 FROM announcements"
+    df_raw = pd.read_sql(query, conn)
+
+    scaler = MinMaxScaler()
+    df_raw['capacity_cm3'] = scaler.fit_transform(df_raw[['capacity_cm3']])
+
+    joblib.dump(scaler, 'capacity_cm3_scaler.pkl')
+    df_raw[['id_announcement', 'capacity_cm3']].to_parquet('capacity_cm3_scaler.parquet')
+
+def get_categories_data():
+    categories = ['mark','transmission','body_type','fuel']
+
+    query = f"SELECT id_announcement, {', '.join(categories)} FROM announcements"
+    df_raw = pd.read_sql(query, conn)
+
+    for cat in categories:
+        with open(f"../json_files/{cat}_map.json","r") as f:
+            mapping = json.load(f)
+
+        matrix = np.zeros((len(df_raw),len(mapping)), dtype=int)
+
+        for i, val in enumerate(df_raw[cat]):
+            if val in mapping:
+                index = mapping[val]
+                matrix[i, index] = 1
+
+        df_final = pd.DataFrame(matrix, columns=[f"{cat}_{name}" for name in mapping.keys()])
+        df_final['id_announcement'] = df_raw['id_announcement']
+        df_final.to_parquet(f"{cat}_data.parquet")
+
+def get_accident():
+    query = "SELECT id_announcement, accident_free FROM announcements"
+    df_raw = pd.read_sql(query, conn)
+
+    df_raw['accident_free'] = df_raw['accident_free'].astype(int)
+
+    df_raw[['id_announcement', 'accident_free']].to_parquet('accident_free_scaler.parquet')
 
 
 if __name__ == "__main__":

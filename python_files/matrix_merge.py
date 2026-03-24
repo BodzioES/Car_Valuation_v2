@@ -2,10 +2,18 @@ import pandas as pd
 
 def create_dataset():
     try:
-        df_equip = pd.read_parquet('training_data_encoded.parquet')
-        df_price = pd.read_parquet('price_scaler.parquet')
+        # marka
+        # model
         df_year = pd.read_parquet('yearProduction_scaler.parquet')
         df_mileage = pd.read_parquet('course_scaler.parquet')
+        # power_h -------------------------------------
+        # capacity_cm3
+        # fuel
+        # transmission
+        # body_type
+        # accident_free
+        df_price = pd.read_parquet('price_scaler.parquet')
+        df_equip = pd.read_parquet('training_data_encoded.parquet')
 
     except FileNotFoundError as e:
         print(e)
