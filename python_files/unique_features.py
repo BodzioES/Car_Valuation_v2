@@ -65,3 +65,4 @@ def generate_maps():
 
 if __name__ == '__main__':
     analyze_equipment()
+    generate_maps()

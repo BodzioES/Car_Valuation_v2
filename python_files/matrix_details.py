@@ -42,7 +42,7 @@ def get_item():
                 encoded_features.at[i, item] = 1
 
     final_df = pd.concat([df_raw[['id_announcement']], encoded_features], axis=1)
-    final_df.to_parquet('training_data_encoded.parquet')
+    final_df.to_parquet('../files_other/training_data_encoded.parquet')
 
 def get_price():
     query = "SELECT id_announcement, price FROM announcements WHERE price > 500"
@@ -54,9 +54,8 @@ def get_price():
 
     joblib.dump(scaler, 'price_scaler.pkl')
 
-    df_price[['id_announcement', 'price_scaled']].to_parquet('price_scaler.parquet')
+    df_price[['id_announcement', 'price_scaled']].to_parquet('../files_other/price_scaler.parquet')
     print("The prices was scaled and saved")
-
 
 def get_course():
     query = "SELECT id_announcement, course FROM announcements WHERE course IS NOT NULL AND course < 1000000"
@@ -66,7 +65,7 @@ def get_course():
     df_raw['course'] = scaler.fit_transform(df_raw[['course']])
 
     joblib.dump(scaler, 'course_scaler.pkl')
-    df_raw[['id_announcement', 'course']].to_parquet('course_scaler.parquet')
+    df_raw[['id_announcement', 'course']].to_parquet('../files_other/course_scaler.parquet')
 
 def get_year():
     query = "SELECT id_announcement, year_production FROM announcements WHERE year_production > 1000"
@@ -76,7 +75,7 @@ def get_year():
     df_raw['year_production'] = scaler.fit_transform(df_raw[['year_production']])
 
     joblib.dump(scaler, 'yearProduction_scaler.pkl')
-    df_raw[['id_announcement','year_production']].to_parquet('yearProduction_scaler.parquet')
+    df_raw[['id_announcement','year_production']].to_parquet('../files_other/yearProduction_scaler.parquet')
 
 def get_power():
     query = "SELECT id_announcement, power_hp FROM announcements"
@@ -86,7 +85,7 @@ def get_power():
     df_raw['power_hp'] = scaler.fit_transform(df_raw[['power_hp']])
 
     joblib.dump(scaler, 'power_hp_scaler.pkl')
-    df_raw[['id_announcement','power_hp']].to_parquet('power_hp_scaler.parquet')
+    df_raw[['id_announcement','power_hp']].to_parquet('../files_other/power_hp_scaler.parquet')
 
 def get_capacity():
     query = "SELECT id_announcement, capacity_cm3 FROM announcements"
@@ -96,7 +95,7 @@ def get_capacity():
     df_raw['capacity_cm3'] = scaler.fit_transform(df_raw[['capacity_cm3']])
 
     joblib.dump(scaler, 'capacity_cm3_scaler.pkl')
-    df_raw[['id_announcement', 'capacity_cm3']].to_parquet('capacity_cm3_scaler.parquet')
+    df_raw[['id_announcement', 'capacity_cm3']].to_parquet('../files_other/capacity_cm3_scaler.parquet')
 
 def get_categories_data():
     categories = ['mark','transmission','body_type','fuel']
@@ -117,7 +116,7 @@ def get_categories_data():
 
         df_final = pd.DataFrame(matrix, columns=[f"{cat}_{name}" for name in mapping.keys()])
         df_final['id_announcement'] = df_raw['id_announcement']
-        df_final.to_parquet(f"{cat}_data.parquet")
+        df_final.to_parquet(f"../files_other/{cat}_data.parquet")
 
 def get_accident():
     query = "SELECT id_announcement, accident_free FROM announcements"
@@ -125,7 +124,7 @@ def get_accident():
 
     df_raw['accident_free'] = df_raw['accident_free'].astype(int)
 
-    df_raw[['id_announcement', 'accident_free']].to_parquet('accident_free_scaler.parquet')
+    df_raw[['id_announcement', 'accident_free']].to_parquet('../files_other/accident_free_scaler.parquet')
 
 
 if __name__ == "__main__":
@@ -133,5 +132,9 @@ if __name__ == "__main__":
     get_course()
     get_item()
     get_price()
+    get_accident()
+    get_categories_data()
+    get_capacity()
+    get_power()
     print("Process finished")
 
