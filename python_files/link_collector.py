@@ -74,7 +74,7 @@ def start_scraping():
                 for link in current_page_links:
                     try:
                         process_announcement(link)
-                        time.sleep(1.2)
+                        time.sleep(1)
                     except Exception as e:
                         with open("error_log.txt", "a", encoding="utf-8") as f:
                             f.write(f"Error: {e} , {link}\n")

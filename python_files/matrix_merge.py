@@ -2,7 +2,11 @@ import os
 import pandas as pd
 
 def create_dataset():
-    base_files = 'training_data_encoded.parquet'
+    base_files = '../files_other/training_data_encoded.parquet'
+    if not os.path.exists(base_files):
+        print(f"{base_files} does not exist")
+        return
+
     master_df = pd.read_parquet(base_files)
 
     modules = [
@@ -15,7 +19,8 @@ def create_dataset():
         '../files_other/fuel_data.parquet',
         '../files_other/mark_data.parquet',
         '../files_other/transmission_data.parquet',
-        '../files_other/body_type_data.parquet'
+        '../files_other/body_type_data.parquet',
+        '../files_other/mark_model_data.parquet',
     ]
 
     for module in modules:
@@ -29,7 +34,7 @@ def create_dataset():
 
     final_dataset = master_df.drop(columns=['id_announcement'])
     final_dataset.to_parquet('../files_other/final_dataset.parquet')
-
+    print(f"{final_dataset} has been created")
 
 if __name__ == '__main__':
     create_dataset()

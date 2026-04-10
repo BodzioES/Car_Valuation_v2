@@ -33,7 +33,7 @@ def analyze_equipment():
 
 def generate_maps():
 
-    categories = ['mark','transmission','body_type','fuel']
+    categories = ['transmission','body_type','fuel']
 
     conn = psycopg2.connect(
         host="localhost",
