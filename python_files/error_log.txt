@@ -1,1 +1,2 @@
 Error: Response ended prematurely , https://www.otomoto.pl/osobowe/oferta/opel-grandland-x-ID6I0hEz.html
+Error: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)) , https://www.otomoto.pl/osobowe/oferta/audi-q3-ID6I0wLq.html
