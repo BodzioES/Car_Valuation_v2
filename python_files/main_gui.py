@@ -1,45 +1,53 @@
+import os
+import sys
 import customtkinter as ctk
 import pandas as pd
 import numpy as np
 import joblib
 import json
-import os
 from tensorflow.keras.models import load_model
+
+def get_resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+sys.path.append(get_resource_path('.'))
 from translations import *
 
+path_files = get_resource_path('files_other/')
+json_path = get_resource_path('json_files/')
 
-path = '../files_other/'
-json_path = '../json_files/'
+scaler_price = joblib.load(os.path.join(path_files, 'price_scaler.pkl'))
+scaler_course = joblib.load(os.path.join(path_files, 'course_scaler.pkl'))
+scaler_year = joblib.load(os.path.join(path_files, 'yearProduction_scaler.pkl'))
+scaler_power = joblib.load(os.path.join(path_files, 'power_hp_scaler.pkl'))
+scaler_capacity = joblib.load(os.path.join(path_files, 'capacity_cm3_scaler.pkl'))
 
-scaler_price = joblib.load(f'{path}price_scaler.pkl')
-scaler_course = joblib.load(f'{path}course_scaler.pkl')
-scaler_year = joblib.load(f'{path}yearProduction_scaler.pkl')
-scaler_power = joblib.load(f'{path}power_hp_scaler.pkl')
-scaler_capacity = joblib.load(f'{path}capacity_cm3_scaler.pkl')
-
-with open(f'{json_path}features_map.json', 'r', encoding='utf-8') as f:
+with open(os.path.join(json_path, 'features_map.json'), 'r', encoding='utf-8') as f:
     features_map = json.load(f)
-with open(f'{json_path}mark_model_map.json', 'r', encoding='utf-8') as f:
+with open(os.path.join(json_path, 'mark_model_map.json'), 'r', encoding='utf-8') as f:
     mark_model_map = json.load(f)
-with open(f'{json_path}fuel_map.json', 'r', encoding='utf-8') as f:
+with open(os.path.join(json_path, 'fuel_map.json'), 'r', encoding='utf-8') as f:
     fuel_map = json.load(f)
-with open(f'{json_path}transmission_map.json', 'r', encoding='utf-8') as f:
+with open(os.path.join(json_path, 'transmission_map.json'), 'r', encoding='utf-8') as f:
     transmission_map = json.load(f)
-with open(f'{json_path}body_type_map.json', 'r', encoding='utf-8') as f:
+with open(os.path.join(json_path, 'body_type_map.json'), 'r', encoding='utf-8') as f:
     body_type_map = json.load(f)
 
-model_modern = load_model('car_valuation_model_modern.keras')
-model_legacy = load_model('car_valuation_model.keras')
+model_modern = load_model(get_resource_path('car_valuation_model_modern.keras'))
+model_legacy = load_model(get_resource_path('car_valuation_model.keras'))
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
-
 
 class CarValuationApp(ctk.CTk):
     def __init__(self):
         super().__init__()
 
-        self.title("Car Valuation AI")
+        self.title("Car Valuation AI - PRO")
         self.geometry("900x900")
 
         self.label_title = ctk.CTkLabel(self, text="AI VEHICLE ANALYSIS SYSTEM", font=("Segoe UI", 26, "bold"))
@@ -164,7 +172,6 @@ class CarValuationApp(ctk.CTk):
         except Exception as e:
             print(f"Error: {e}")
             self.result_label.configure(text="Error: Check Input Data", text_color="#e74c3c")
-
 
 if __name__ == "__main__":
     app = CarValuationApp()
