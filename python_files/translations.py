@@ -27,7 +27,8 @@ TRANSMISSION_MAP = {
     "4x4 (automatically attached)": "4x4 (dołączany automatycznie)",
     "On the front wheels": "Na przednie koła",
     "Rear wheel drive": "Na tylne koła",
-    "Lack": "Bral"
+    "Lack": "Bral",
+    "4x4 (fixed)": "4x4 (stały)",
 }
 
 ACCIDENT_MAP = {
@@ -132,8 +133,8 @@ EQUIPMENT_MAP = {
     "Internet Access": "Dostęp do internetu",
     "Heated Steering Wheel": "Kierownica ogrzewana",
     "Tow Hook": "Hak",
-    "LED Fog Lights": "Lampy przeciwmgielne w technologii LED",
+    "Heated Windshield": "Podgrzewana przednia szyba",
+    "Summer Tires": "Opony letnie",
     "Voice Control": "Sterowanie funkcjami pojazdu za pomocą głosu",
-    "Pedestrian Protection System": "System hamowania awaryjnego dla ochrony pieszych",
     "Hill Descent Control": "Automatyczna kontrola zjazdu ze stoku"
 }

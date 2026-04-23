@@ -1,9 +1,0 @@
-Error: Response ended prematurely , https://www.otomoto.pl/osobowe/oferta/opel-grandland-x-ID6I0hEz.html
-Error: ('Connection aborted.', ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)) , https://www.otomoto.pl/osobowe/oferta/audi-q3-ID6I0wLq.html
-Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')) , https://www.otomoto.pl/osobowe/oferta/kia-ceed-ID6I04TF.html
-Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')) , https://www.otomoto.pl/osobowe/oferta/skoda-superb-ID6HZito.html
-Error: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')) , https://www.otomoto.pl/osobowe/oferta/ford-fiesta-ID6HUniZ.html
-Error: Response ended prematurely , https://www.otomoto.pl/osobowe/oferta/opel-corsa-ID6I13uN.html
-Error: Response ended prematurely , https://www.otomoto.pl/osobowe/oferta/mercedes-benz-klasa-e-ID6HObj5.html
-Error: HTTPSConnectionPool(host='www.otomoto.pl', port=443): Read timed out. (read timeout=None) , https://www.otomoto.pl/osobowe/oferta/mercedes-benz-glc-ID6HPYq7.html
-Error: HTTPSConnectionPool(host='www.otomoto.pl', port=443): Read timed out. (read timeout=None) , https://www.otomoto.pl/osobowe/oferta/mercedes-benz-klasa-v-ID6HVIp3.html

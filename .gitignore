@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*$py.class
+
+build/
+dist/
+*.spec
+
+*.parquet
+*.db
+*.sqlite
+error_log.txt
+
+venv/
+.env
+

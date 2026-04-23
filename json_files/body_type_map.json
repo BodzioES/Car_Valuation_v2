@@ -1,11 +1,11 @@
 {
     "Auta małe": 0,
-    "Kabriolet": 1,
-    "SUV": 2,
+    "SUV": 1,
+    "Kabriolet": 2,
     "Coupe": 3,
     "Auta miejskie": 4,
-    "Kompakt": 5,
-    "Sedan": 6,
-    "Kombi": 7,
-    "Minivan": 8
+    "Sedan": 5,
+    "Kompakt": 6,
+    "Minivan": 7,
+    "Kombi": 8
 }

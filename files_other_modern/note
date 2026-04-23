@@ -1,0 +1,2 @@
+pliki w tym folderze to pliki nauczone na autach powyzej 2000 roku , aby je uzyc do pliku final_dataset wystarczy podmienic
+sciezki plikow w kodzie "matrix_details.py" w miejscach gdzie jest query z selectem

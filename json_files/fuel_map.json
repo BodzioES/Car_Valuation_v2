@@ -1,7 +1,7 @@
 {
     "Elektryczny": 0,
-    "Benzyna": 1,
-    "Hybryda Plug-in": 2,
+    "Hybryda Plug-in": 1,
+    "Benzyna": 2,
     "Hybryda": 3,
     "Diesel": 4,
     "Benzyna+LPG": 5,
