@@ -1,5 +1,4 @@
 # 🚗 Car Valuation AI
-
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange?logo=tensorflow&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue?logo=postgresql&logoColor=white)
@@ -10,9 +9,11 @@ A project for estimating car prices using neural networks. It uses two separate 
 ---
 
 ## 🎥 Demo
-*(You can drop a GIF or a short video here showing how the app works — selecting a car, choosing equipment, and getting a price prediction)*  
-Example:  
-`![App Demo](assets/demo.gif)`
+
+Note - the model may be wrong with the accuracy of the valuation, some cars may be priced with an accuracy of 1-2% and some with an accuracy of up to 16%, it is working on making it as effective as possible
+
+https://github.com/user-attachments/assets/3ba2e0b5-cf98-411a-909c-068697ef5881
+
 
 ---
 
