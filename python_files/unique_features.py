@@ -1,4 +1,3 @@
-import psycopg2
 import json
 from collections import Counter
 from db_config import get_db_connection
@@ -75,6 +74,5 @@ def generate_maps():
 
 
 if __name__ == '__main__':
-    # Execute the data analysis and mapping generation sequence
     analyze_equipment()
     generate_maps()

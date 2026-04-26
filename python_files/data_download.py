@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 import json
-import psycopg2
 
 from db_config import get_db_connection
 

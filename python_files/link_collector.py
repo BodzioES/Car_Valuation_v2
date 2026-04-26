@@ -5,7 +5,6 @@ from bs4 import BeautifulSoup
 import time
 from data_download import process_announcement
 
-# Configuration files for persistence and vehicle makes
 STATE_FILE = "../json_files/scraper_state.json"
 MAKES_FILE = "../json_files/makes_dictionary.json"
 

@@ -13,7 +13,6 @@ def create_dataset():
         print(f"Critical error: {base_files} does not exist")
         return
 
-    # Start the master dataframe with the equipment data
     master_df = pd.read_parquet(base_files)
 
     # List of all feature modules to be merged

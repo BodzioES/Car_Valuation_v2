@@ -3,7 +3,6 @@ import os
 import joblib
 import numpy as np
 import pandas as pd
-import psycopg2
 from sklearn.preprocessing import MinMaxScaler
 
 from db_config import get_db_connection
